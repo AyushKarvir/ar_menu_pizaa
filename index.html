@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger  AR Menu</title>
+    <title>Burger AR Menu</title>
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
@@ -17,13 +17,14 @@
         }
 
         h1 {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .price {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #28a745;
         }
 
         /* 3D viewer styling */
@@ -31,11 +32,9 @@
             width: 100%;
             height: 500px;
             background: transparent;
-            /* Added touch-action so the user can still scroll the page vertically over the canvas */
             touch-action: pan-y; 
         }
 
-        /* Removes the highlight border when touching or moving the 3D model */
         model-viewer:focus, 
         model-viewer:focus-visible {
             outline: none;
@@ -46,17 +45,33 @@
             font-size: 16px;
             color: #333;
         }
+
+        /* AR Button Styling */
+        .ar-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
     </style>
 </head>
 <body>
 
-    <h1>Cheese Burger  </h1>
+    <h1>Cheese Burger</h1>
     <div class="price">₹99</div>
 
     <model-viewer
-        src="scene (2)-compressed.glb"
-        ios-src="pizza.usdz"
-        alt="3D Pizza Model"
+        src="burger.glb"
+        ios-src="burger.usdz" 
+        alt="3D Burger Model"
         ar
         ar-modes="scene-viewer quick-look webxr"
         ar-scale="auto" 
@@ -65,28 +80,14 @@
         shadow-intensity="1"
         exposure="1">
 
-        <button slot="ar-button"
-            style="
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            /* CRUCIAL FIX: Position absolute is required to overlay the custom button inside model-viewer */
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);">
+        <button slot="ar-button" class="ar-btn">
             View Burger in AR
         </button>
 
     </model-viewer>
 
     <div class="info">
-        Tap <b>View Burger in AR</b> and point your camera at a table to place the pizza in the real world.
+        Tap <b>View Burger in AR</b> and point your camera at a table to place the burger in the real world.
     </div>
 
 </body>
